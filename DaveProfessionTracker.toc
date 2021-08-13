@@ -1,0 +1,12 @@
+## Interface: 20501
+## Title: SodaProfessionTracker
+## Author: Sodaro
+## Version: 0.1
+
+## SavedVariables: SPTDB
+## SavedVariablesPerCharacter: SPTProfessions
+
+Libs\LibDBIcon-1.0\LibStub\LibStub.lua
+Libs\AceDB-3.0\AceDB-3.0.lua
+
+main.lua

@@ -30,11 +30,14 @@ local function eventHandler(self, event, addonName)
 end
 frame:SetScript("OnEvent", eventHandler);
 
-local parentFrame = CreateFrame("Frame", "ParentFrame", MinimapCluster)
+local parentFrame = CreateFrame("Frame", nil, MinimapCluster, BackdropTemplateMixin and "BackdropTemplate")
 parentFrame:SetFrameStrata("DIALOG")
 parentFrame:SetWidth(120) -- Set these to whatever height/width is needed 
 parentFrame:SetHeight(60) -- for your Texture
 parentFrame:SetPoint("CENTER", -180, 0) -- for your Texture
+--[[if not parentFrame.SetBackdrop then
+		Mixin(parentFrame, BackdropTemplateMixin)
+end--]]
 parentFrame:SetBackdrop({bgFile = "Interface/Tooltips/UI-Tooltip-Background", 
     edgeFile = "Interface/Tooltips/UI-Tooltip-Border", 
     tile = true, tileSize = 8, edgeSize = 8, 
@@ -54,7 +57,7 @@ function createCheckbutton(parent, x_loc, y_loc, displayname)
 	return checkbutton;
 end
 
-mineralsCheckButton = createCheckbutton(ParentFrame, 4, -4, "Track Minerals");
+mineralsCheckButton = createCheckbutton(parentFrame, 4, -4, "Track Minerals");
 mineralsCheckButton.tooltip = "Find minerals?";
 
 mineralsCheckButton:SetScript("OnClick", 
@@ -65,7 +68,7 @@ mineralsCheckButton:SetScript("OnClick",
    end
 );
 
-herbsCheckButton = createCheckbutton(ParentFrame, 4, -32, "Track Herbs");
+herbsCheckButton = createCheckbutton(parentFrame, 4, -32, "Track Herbs");
 herbsCheckButton.tooltip = "Find herbs?";
 
 herbsCheckButton:SetScript("OnClick", 
